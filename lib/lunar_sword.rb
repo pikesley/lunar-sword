@@ -44,7 +44,19 @@ module LunarSword
         wants.html do
           @title = @location.description
           @github_url = CONFIG['github_url']
-          erb :room
+          [300, erb(:room)]
+        end
+
+        wants.json do
+          [
+            300,
+            {
+              x: params[:x],
+              y: params[:y],
+              room: @location.description,
+              exits: @location.exits
+            }.to_json
+          ]
         end
       end
     end

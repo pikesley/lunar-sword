@@ -30,7 +30,12 @@
 
   <ul>
     <% @location.exits.each do |x| %>
-      <li><a href='<%= "#{request.path}/#{x}" %>'><%= points[x] %></a></li>
+      <li>
+        <a href='<%= "#{request.path}/#{x}" %>'
+           class='btn btn-primary'>
+          <%= points[x] %>
+        </a>
+      </li>
     <% end %>
   </ul>
 </div>
