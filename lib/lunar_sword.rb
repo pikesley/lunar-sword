@@ -28,9 +28,7 @@ module LunarSword
         end
 
         wants.json do
-          {
-            app: 'LunarSword'
-          }.to_json
+          redirect to '/0/0/'
         end
       end
     end

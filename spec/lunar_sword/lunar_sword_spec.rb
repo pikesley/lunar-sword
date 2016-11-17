@@ -2,20 +2,9 @@ module LunarSword
   JSON_HEADERS = { 'HTTP_ACCEPT' => 'application/json' }
 
   describe App do
-    it 'says hello' do
-      get '/'
-      expect(last_response).to be_ok
-      expect(last_response.body).to match /Hello from LunarSword/
-    end
-
-    it 'serves JSON' do
-      get '/', nil, JSON_HEADERS
-      expect(last_response).to be_ok
-      expect(JSON.parse last_response.body).to eq (
-        {
-          'app' => 'LunarSword'
-        }
-      )
+    it 'returns 300' do
+      get '/0/0'
+      expect(last_response.status).to eq 300
     end
   end
 end
