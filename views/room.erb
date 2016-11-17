@@ -1,0 +1,11 @@
+<h2>
+  <%= @location['description'] %>
+</h2>
+
+Exits are
+
+<ul>
+  <% @location['exits'].each do |x| %>
+    <li><%= x %></li>
+  <% end %>
+</ul>
