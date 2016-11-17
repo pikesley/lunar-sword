@@ -8806,7 +8806,7 @@ body {
   width: 100%;
   text-align: center;
   margin-top: 10px;
-  background: #ce0071;
+  background: #246b61;
   color: white;
   height: 40px;
   padding: 10px 16px;
@@ -8818,11 +8818,60 @@ body {
 
 /* line 4, ../sass/_nav.scss */
 .navbar-default .navbar-nav li a {
-  color: #ce0071;
+  color: #246b61;
 }
 
+/* line 1, ../sass/_github-corner.scss */
+.octo-background {
+  fill: #246b61;
+}
+
+/* line 5, ../sass/_github-corner.scss */
+.octo-arm, .octo-body {
+  fill: white;
+}
+
+/* line 9, ../sass/_github-corner.scss */
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+@media (max-width: 500px) {
+  /* line 28, ../sass/_github-corner.scss */
+  .github-corner:hover .octo-arm {
+    animation: none;
+  }
+
+  /* line 32, ../sass/_github-corner.scss */
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}
 /* line 10, ../sass/styles.scss */
-h1 {
-  color: #ce0071;
-  font-family: "Ubuntu Mono";
+body {
+  color: #246b61;
+  word-spacing: 1em;
+  font-family: "spectrum";
+  padding-top: 10px;
+}
+
+/* line 17, ../sass/styles.scss */
+p {
+  color: #49001d;
+}
+
+/* line 22, ../sass/styles.scss */
+.exits p {
+  color: #553f00;
 }

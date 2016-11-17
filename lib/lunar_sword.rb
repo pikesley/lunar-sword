@@ -11,7 +11,9 @@ require_relative 'lunar_sword/dungeon'
 
 module LunarSword
   class App < Sinatra::Base
-    $dungeon = YAML.load_file 'config/dungeon.yml'
+    $dungeon = Dungeon.new 'config/dungeon.yml'
+
+    enable :sessions
 
     helpers do
       include LunarSword::Helpers
@@ -22,10 +24,7 @@ module LunarSword
 
       respond_to do |wants|
         wants.html do
-          @content = '<h1>Hello from LunarSword</h1>'
-          @title = 'LunarSword'
-          @github_url = CONFIG['github_url']
-          erb :index
+          redirect to '/0/0/'
         end
 
         wants.json do
@@ -36,17 +35,48 @@ module LunarSword
       end
     end
 
-    get '/:x/:y' do
+    get '/:x/:y/?' do
       headers 'Vary' => 'Accept'
 
-      @location = $dungeon[params['x'].to_i][params['y'].to_i]
+      @location = location params
 
       respond_to do |wants|
         wants.html do
-          @title = @location['description']
+          @title = @location.description
+          @github_url = CONFIG['github_url']
           erb :room
         end
       end
+    end
+
+    get '/:x/:y/:direction/?' do
+      headers 'Vary' => 'Accept'
+
+      @location = location params
+
+      unless @location.exits.include? params[:direction] then
+        @title = @location.description
+        session[:flash] = 'You cannot go that way!'
+        redirect to "/#{params[:x]}/#{params[:y]}"
+      end
+
+      next_room = {
+        x: params[:x].to_i,
+        y: params[:y].to_i
+      }
+
+      case params[:direction]
+      when 'N'
+        next_room[:y] -= 1
+      when 'E'
+        next_room[:x] += 1
+      when 'S'
+        next_room[:y] += 1
+      when 'W'
+        next_room[:x] -= 1
+      end
+
+      redirect to "/#{next_room[:x]}/#{next_room[:y]}"
     end
 
     # start the server if ruby file executed directly

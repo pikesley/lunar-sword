@@ -1,11 +1,36 @@
+<% if session[:flash] %>
+<div class='alert alert-danger alert-dismissible'>
+  <strong><%= session[:flash] %></strong>
+  <a href='#' class='close' data-dismiss='alert' aria-label='close'>
+    <i class='fa fa-times-circle-o'></i>
+  </a>
+</div>
+<% session[:flash] = nil %>
+<% end %>
+
 <h2>
-  <%= @location['description'] %>
+  You are in the <%= @location.description %> room
 </h2>
 
-Exits are
+<p>
+  There will probably be some items or something here in a future iteration of this nonsense
+</p>
 
-<ul>
-  <% @location['exits'].each do |x| %>
-    <li><%= x %></li>
-  <% end %>
-</ul>
+<% points = {
+  'N' => 'North',
+  'E' => 'East',
+  'S' => 'South',
+  'W' => 'West'
+} %>
+
+<div class='exits'>
+  <p>
+    Exits are
+  </p>
+
+  <ul>
+    <% @location.exits.each do |x| %>
+      <li><a href='<%= "#{request.path}/#{x}" %>'><%= points[x] %></a></li>
+    <% end %>
+  </ul>
+</div>

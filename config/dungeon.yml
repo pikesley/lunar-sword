@@ -1,14 +1,20 @@
 -
   -
-    description: North west
+    description: north west
     exits:
       - E
+      - S
   -
-    description: North east
+    description: north east
     exits:
       - W
+      - S
 -
   -
-    descrption: South west
+    description: south west
+    exits:
+      - N
   -
-    description: South east
+    description: south east
+    exits:
+      - N

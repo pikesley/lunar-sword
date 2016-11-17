@@ -5,9 +5,21 @@
 @import 'colours';
 @import 'footer';
 @import 'nav';
-//@import 'github-corner';
+@import 'github-corner';
 
-h1 {
+body {
   color: $brand-primary;
+  word-spacing: 1em;
   font-family: $font-primary;
+  padding-top: $padding-large-vertical;
+}
+
+p {
+  color: $rgba-secondary-2-4;
+}
+
+.exits {
+  p {
+    color: $rgba-secondary-1-4;
+  }
 }
