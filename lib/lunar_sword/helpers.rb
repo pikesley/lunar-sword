@@ -20,6 +20,13 @@ module LunarSword
       end
     end
 
+    def all_items
+      session[:all_items] || begin
+        session[:all_items] = ItemList.new
+        return session[:all_items]
+      end
+    end
+
     def slugify s
       s.gsub(' ', '-')
     end

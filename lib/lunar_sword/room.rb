@@ -15,7 +15,7 @@ module LunarSword
     end
 
     def give_up item
-      @items.delete item
+      @items.delete_if { |i| i.id == item }
     end
 
     def receive item

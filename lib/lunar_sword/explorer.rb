@@ -8,11 +8,11 @@ module LunarSword
 
     def take(item)
       @items.push item
-      @items.uniq!
+      @items.uniq! { |i| i.id }
     end
 
     def drop(item)
-      @items.delete item
+      @items.delete_if { |i| i.id == item }
     end
   end
 end

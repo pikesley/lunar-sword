@@ -9,6 +9,8 @@ require_relative 'lunar_sword/racks'
 require_relative 'lunar_sword/room'
 require_relative 'lunar_sword/dungeon'
 require_relative 'lunar_sword/explorer'
+require_relative 'lunar_sword/item_list'
+require_relative 'lunar_sword/item'
 
 module LunarSword
   class App < Sinatra::Base
@@ -85,14 +87,14 @@ module LunarSword
         "/#{next_room[:x]}/#{next_room[:y]}"
 
       when 'take'
-        explorer.take @data['take']
-        @room.give_up @data['take']
+        explorer.take session[:all_items][@data['take']]
+        @room.give_up session[:all_items][@data['take']]
 
         "/#{params[:x]}/#{params[:y]}"
 
       when 'drop'
-        explorer.drop @data['drop']
-        @room.receive @data['drop']
+        explorer.drop session[:all_items][@data['drop']]
+        @room.receive session[:all_items][@data['drop']]
 
         "/#{params[:x]}/#{params[:y]}"
       end
