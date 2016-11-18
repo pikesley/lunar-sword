@@ -1,3 +1,10 @@
 language: ruby
 rvm:
-  - 2.3.1
+- 2.3.1
+deploy:
+  provider: heroku
+  api_key:
+    secure: 0k8OLordH3g7fcoYUf9KFd+0NvV1YV4e3dMYpQDaUeFMo0UXLWL8oBuakxJnMlNd5zxphZHQPk0jTkd9mrl5LNZw3f6QBuvZUoGWttLh4yw68XVwYgfdSAcxO+2JIjQAMl26wLtE31PMUgQZAjqrSTtFA6h29HtdvwPiKhZ7iOkNZoQKvCX87vfqgRn4g5NG6mufHEKNdRTdH2M2ecKmuK0UXgkXMp/QepDxApkCgJC4oPvy7zd86xhbIycC3o5aRkV2revRnwktSjw1YqtNJUCfMVsUTV4aLp/lcHqkagG4KszR4wOODKrJjQPg8pIcGxv6923vVnfzTQT9cB9w7OlZSemYFJ+HZW/hvKQQd65eRQ8A8cki0AkPJN3ntYSVHBusGz5Srn6iGLrUqUD48npA300Z4FYiVt78/gQPH9n5GngfiXowT5e9cYG99vhmPjJlXNNEkz16O2lS3FtnPJuPZ5MB8figM59tNFjei5cRZOEJ1N5sJPRUVAIjgx4z2ZZF1bNl8d9g2dNme9v9Zdi4gESTHIIJ02LkuZ5wq50Ag0UD9BTyqYaICpuL/04UAEFGhGlIDXl+1PjVXtAYKWIE5H4wq7tObCkp2r/urO8b4YH3Cqx0iu0fw6yWbSg5LAI9JOwlhFIFLZ9hBJYWh7QQIdqKXrB2Zd1fIv4XoeU=
+  app: lunar-sword
+  on:
+    repo: pikesley/lunar-sword
