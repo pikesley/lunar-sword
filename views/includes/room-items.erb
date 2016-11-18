@@ -1,0 +1,18 @@
+<% if @room.items.count > 0 %>
+  <div class='col-md-4' id='items'>
+    <h3>You can see</h3>
+
+    <ul>
+      <% @room.items.each do |item| %>
+        <li>
+          <%= item %>
+          <button id='<%= item %>'
+                  class='btn btn-primary'
+                  onclick='take("<%= item %>")'>
+            pick up
+          </button>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

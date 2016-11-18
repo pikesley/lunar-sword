@@ -1,0 +1,18 @@
+<% if explorer.items.count > 0 %>
+  <div class='col-md-4' id='explorer'>
+    <h3>You are carrying</h3>
+
+    <ul>
+      <% explorer.items.each do |item| %>
+        <li>
+          <%= item %>
+          <button id='<%= item %>'
+                  class='btn btn-primary'
+                  onclick='drop("<%= item %>")'>
+            drop
+          </button>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

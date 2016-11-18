@@ -21,17 +21,17 @@ li {
 
 h1 {
   font-size: 1.5em;
-  color: $rgba-primary-0;
+  color: $brand-primary;
 }
 
 h2 {
   font-size: 1.2em;
-  color: $rgba-secondary-1-0;
+  color: $brand-secondary-1;
 }
 
 h3 {
   font-size: 1em;
-  color: $rgba-secondary-2-0;
+  color: $brand-secondary-2;
 }
 
 .btn {
@@ -40,8 +40,19 @@ h3 {
 }
 
 #items, #explorer, #exits {
-  background-color: transparentize($brand-complement, 0.5);
   padding: $padding-large-vertical;
   margin: $padding-small-vertical;
   border-radius: 10px;
+}
+
+#exits {
+  background-color: $rgba-complement-3;
+}
+
+#explorer {
+  background-color: $rgba-secondary-2-1;
+}
+
+#items {
+  background-color: $rgba-secondary-1-2;
 }

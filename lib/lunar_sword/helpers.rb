@@ -32,5 +32,21 @@ module LunarSword
         'W' => 'West'
       }[key]
     end
+
+    def direction_button room, direction
+      type = 'disabled'
+      onclick = nil
+
+      if room.exits.include? direction
+        type = 'primary'
+        onclick = "travel(\"#{direction}\")"
+      end
+
+      b = "<button id='#{points direction}' class='btn btn-#{type}'"
+      b += " onclick='#{onclick}'" if onclick
+      b += ">#{points direction}</button>"
+
+      b
+    end
   end
 end

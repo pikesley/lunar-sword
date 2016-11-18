@@ -15,59 +15,9 @@
 
 <div class='row'>
 
-  <% if @room.items.count > 0 %>
-    <div class='col-md-4' id='items'>
-      <h3>You can see</h3>
-
-      <ul>
-        <% @room.items.each do |item| %>
-          <li>
-            <%= item %>
-            <button id='<%= item %>'
-                    class='btn btn-primary'
-                    onclick='take("<%= item %>")'>
-              pick up
-            </button>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <% if explorer.items.count > 0 %>
-    <div class='col-md-4' id='explorer'>
-      <h3>You are carrying</h3>
-
-      <ul>
-        <% explorer.items.each do |item| %>
-          <li>
-            <%= item %>
-            <button id='<%= item %>'
-                    class='btn btn-primary'
-                    onclick='drop("<%= item %>")'>
-              drop
-            </button>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class='col-md-4' id='exits'>
-    <h3>Exits are</h3>
-
-    <ul>
-      <% @room.exits.each do |x| %>
-        <li>
-          <button id='<%= points x %>'
-                  class='btn btn-primary'
-                  onclick='travel("<%= x %>")'>
-            <%= points x %>
-          </button>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+  <%= erb :'includes/exits' %>
+  <%= erb :'includes/room-items' %>
+  <%= erb :'includes/carrying' %>
 
 </div>
 
