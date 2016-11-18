@@ -1,20 +1,22 @@
 -
   -
-    description: north west
+    description: the north west chamber
     exits:
       - E
       - S
+    items:
+      - shovel
   -
-    description: north east
+    description: the north east chamber
     exits:
       - W
       - S
 -
   -
-    description: south west
+    description: the south west chamber
     exits:
       - N
   -
-    description: south east
+    description: the south east chamber
     exits:
       - N

@@ -9,33 +9,102 @@
 <% end %>
 
 <h2>
-  You are in the <%= @location.description %> room
+  You are in <%= @room.description %>
 </h2>
+<hr />
 
-<p>
-  There will probably be some items or something here in a future iteration of this nonsense
-</p>
+<div class='row'>
 
-<% points = {
-  'N' => 'North',
-  'E' => 'East',
-  'S' => 'South',
-  'W' => 'West'
-} %>
+  <% if @room.items.count > 0 %>
+    <div class='col-md-4' id='items'>
+      <h3>You can see</h3>
 
-<div class='exits'>
-  <p>
-    Exits are
-  </p>
+      <ul>
+        <% @room.items.each do |item| %>
+          <li>
+            <%= item %>
+            <button id='<%= item %>'
+                    class='btn btn-primary'
+                    onclick='take("<%= item %>")'>
+              pick up
+            </button>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-  <ul>
-    <% @location.exits.each do |x| %>
-      <li>
-        <a href='<%= "#{request.path}/#{x}" %>'
-           class='btn btn-primary'>
-          <%= points[x] %>
-        </a>
-      </li>
-    <% end %>
-  </ul>
+  <% if explorer.items.count > 0 %>
+    <div class='col-md-4' id='explorer'>
+      <h3>You are carrying</h3>
+
+      <ul>
+        <% explorer.items.each do |item| %>
+          <li>
+            <%= item %>
+            <button id='<%= item %>'
+                    class='btn btn-primary'
+                    onclick='drop("<%= item %>")'>
+              drop
+            </button>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class='col-md-4' id='exits'>
+    <h3>Exits are</h3>
+
+    <ul>
+      <% @room.exits.each do |x| %>
+        <li>
+          <button id='<%= points x %>'
+                  class='btn btn-primary'
+                  onclick='travel("<%= x %>")'>
+            <%= points x %>
+          </button>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
 </div>
+
+<script>
+function travel(direction) {
+  $.ajax({
+    url: '<%= request.path %>',
+    data: JSON.stringify({ direction: direction }),
+    type: 'POST',
+    contentType: 'application/json',
+    success: function(data) {
+      window.location.replace(data)
+    }
+  })
+}
+
+function take(item) {
+  $.ajax({
+    url: '<%= request.path %>',
+    data: JSON.stringify({ take: item }),
+    type: 'POST',
+    contentType: 'application/json',
+    success: function(data) {
+      window.location.replace(data)
+    }
+  })
+}
+
+function drop(item) {
+  $.ajax({
+    url: '<%= request.path %>',
+    data: JSON.stringify({ drop: item }),
+    type: 'POST',
+    contentType: 'application/json',
+    success: function(data) {
+      window.location.replace(data)
+    }
+  })
+}
+</script>

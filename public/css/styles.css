@@ -8868,16 +8868,39 @@ body {
 }
 
 /* line 17, ../sass/styles.scss */
-p {
-  color: #49001d;
+li {
+  list-style: none;
+  padding: 5px;
 }
 
 /* line 22, ../sass/styles.scss */
-.exits p {
-  color: #553f00;
+h1 {
+  font-size: 1.5em;
+  color: #246b61;
 }
-/* line 26, ../sass/styles.scss */
-.exits li {
-  list-style: none;
-  padding: 5px;
+
+/* line 27, ../sass/styles.scss */
+h2 {
+  font-size: 1.2em;
+  color: #aa8c39;
+}
+
+/* line 32, ../sass/styles.scss */
+h3 {
+  font-size: 1em;
+  color: #923158;
+}
+
+/* line 37, ../sass/styles.scss */
+.btn {
+  font-size: 0.8em;
+  word-spacing: 1em;
+}
+
+/* line 42, ../sass/styles.scss */
+#items, #explorer, #exits {
+  background-color: rgba(170, 104, 57, 0.5);
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
 }

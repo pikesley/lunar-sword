@@ -8,11 +8,10 @@ require_relative 'lunar_sword/helpers'
 require_relative 'lunar_sword/racks'
 require_relative 'lunar_sword/room'
 require_relative 'lunar_sword/dungeon'
+require_relative 'lunar_sword/explorer'
 
 module LunarSword
   class App < Sinatra::Base
-    $dungeon = Dungeon.new 'config/dungeon.yml'
-
     enable :sessions
 
     helpers do
@@ -36,11 +35,11 @@ module LunarSword
     get '/:x/:y/?' do
       headers 'Vary' => 'Accept'
 
-      @location = location params
+      @room = room params
 
       respond_to do |wants|
         wants.html do
-          @title = @location.description
+          @title = @room.description
           @github_url = CONFIG['github_url']
           [300, erb(:room)]
         end
@@ -51,42 +50,52 @@ module LunarSword
             {
               x: params[:x],
               y: params[:y],
-              room: @location.description,
-              exits: @location.exits
+              room: @room.description,
+              exits: @room.exits
             }.to_json
           ]
         end
       end
     end
 
-    get '/:x/:y/:direction/?' do
+    post '/:x/:y/?' do
       headers 'Vary' => 'Accept'
 
-      @location = location params
+      @room = room params
+      @data = JSON.parse request.body.read
 
-      unless @location.exits.include? params[:direction] then
-        @title = @location.description
-        session[:flash] = 'You cannot go that way!'
-        redirect to "/#{params[:x]}/#{params[:y]}"
+      case @data.keys.first
+      when 'direction'
+        next_room = {
+          x: params[:x].to_i,
+          y: params[:y].to_i
+        }
+
+        case @data['direction']
+        when 'N'
+          next_room[:y] -= 1
+        when 'E'
+          next_room[:x] += 1
+        when 'S'
+          next_room[:y] += 1
+        when 'W'
+          next_room[:x] -= 1
+        end
+
+        "/#{next_room[:x]}/#{next_room[:y]}"
+
+      when 'take'
+        explorer.take @data['take']
+        @room.give_up @data['take']
+
+        "/#{params[:x]}/#{params[:y]}"
+
+      when 'drop'
+        explorer.drop @data['drop']
+        @room.receive @data['drop']
+
+        "/#{params[:x]}/#{params[:y]}"
       end
-
-      next_room = {
-        x: params[:x].to_i,
-        y: params[:y].to_i
-      }
-
-      case params[:direction]
-      when 'N'
-        next_room[:y] -= 1
-      when 'E'
-        next_room[:x] += 1
-      when 'S'
-        next_room[:y] += 1
-      when 'W'
-        next_room[:x] -= 1
-      end
-
-      redirect to "/#{next_room[:x]}/#{next_room[:y]}"
     end
 
     # start the server if ruby file executed directly
