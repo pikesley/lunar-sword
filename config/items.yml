@@ -1,0 +1,9 @@
+- id: shovel
+  full_name: a shovel
+  thwarts: diggable
+  reusable: true
+
+- id: bomb
+  full_name: a bomb
+  thwarts: explodable
+  reusable: false

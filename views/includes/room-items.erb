@@ -5,7 +5,7 @@
     <ul>
       <% @room.items.each do |item| %>
         <li>
-          <%= item.full_name %>
+          <%= item %>
           <button id='<%= item %>'
                   class='btn btn-primary'
                   onclick='take("<%= item %>")'>

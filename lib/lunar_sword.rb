@@ -87,14 +87,14 @@ module LunarSword
         "/#{next_room[:x]}/#{next_room[:y]}"
 
       when 'take'
-        explorer.take session[:all_items][@data['take']]
-        @room.give_up session[:all_items][@data['take']]
+        explorer.take @data['take']
+        @room.give_up @data['take']
 
         "/#{params[:x]}/#{params[:y]}"
 
       when 'drop'
-        explorer.drop session[:all_items][@data['drop']]
-        @room.receive session[:all_items][@data['drop']]
+        explorer.drop @data['drop']
+        @room.receive @data['drop']
 
         "/#{params[:x]}/#{params[:y]}"
       end

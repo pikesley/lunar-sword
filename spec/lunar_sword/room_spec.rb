@@ -21,13 +21,13 @@ module LunarSword
     end
 
     it 'has items' do
-      r = Room.new 'items' => [Item.new({'id' => 'paint-brush', 'full_name' => 'paint brush'})]
+      r = Room.new 'items' => ['paint-brush']
 
-      expect(r.items.first.full_name).to eq 'paint brush'
+      expect(r.items.first).to eq 'paint-brush'
     end
 
     it 'can yield items' do
-      r = Room.new 'items' => [Item.new({'id' => 'cactus', 'full_name' => 'cactus'})]
+      r = Room.new 'items' => ['cactus']
       r.give_up 'cactus'
 
       expect(r.items).to eq []

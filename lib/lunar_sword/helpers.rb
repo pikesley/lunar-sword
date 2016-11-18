@@ -22,7 +22,7 @@ module LunarSword
 
     def all_items
       session[:all_items] || begin
-        session[:all_items] = ItemList.new
+        session[:all_items] = ItemList.new 'config/items.yml'
         return session[:all_items]
       end
     end
