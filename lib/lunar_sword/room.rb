@@ -1,17 +1,14 @@
 module LunarSword
   class Room
-    attr_reader :description,
-                :exits,
-                :x,
-                :y,
-                :items
+    attr_reader :items
 
     def initialize data
-      @description = data['description']
-      @exits = data['exits'] || []
-      @x = data['x']
-      @y = data['y']
+      @data = data
       @items = data['items'] || []
+    end
+
+    def method_missing m, *args
+      @data[m.to_s]
     end
 
     def give_up item

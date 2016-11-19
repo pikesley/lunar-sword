@@ -56,3 +56,11 @@ h3 {
 #items {
   background-color: $rgba-secondary-1-2;
 }
+
+#compass {
+  width: 100%;
+  text-align: center;
+  div > div {
+    text-align: center;
+  }
+}

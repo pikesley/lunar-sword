@@ -8918,3 +8918,13 @@ h3 {
 #items {
   background-color: #d4a76a;
 }
+
+/* line 60, ../sass/styles.scss */
+#compass {
+  width: 100%;
+  text-align: center;
+}
+/* line 63, ../sass/styles.scss */
+#compass div > div {
+  text-align: center;
+}
