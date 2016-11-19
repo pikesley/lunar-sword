@@ -1,18 +1,28 @@
-<% if @room.items.count > 0 %>
-  <div class='col-md-4' id='items'>
-    <h3>You can see</h3>
+<div id='items'>
+  <h3>You can see</h3>
 
-    <ul>
+  <% if @room.items.count > 0 %>
+
+    <table class='table'>
       <% @room.items.each do |item| %>
-        <li>
-          <%= item %>
-          <button id='<%= item %>'
-                  class='btn btn-primary'
-                  onclick='take("<%= item %>")'>
-            pick up
-          </button>
-        </li>
+        <tr>
+          <td>
+            <%= all_items[item].full_name %>
+          </td>
+          <td>
+            <% if all_items[item].carriable %>
+              <button id='<%= item %>'
+                      class='btn btn-primary'
+                      onclick='take("<%= item %>")'>
+                pick up
+              </button>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
-    </ul>
-  </div>
-<% end %>
+    </table>
+
+  <% else %>
+    <h3>nothing</h3>
+  <% end %>
+</div>

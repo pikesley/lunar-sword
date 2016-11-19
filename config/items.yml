@@ -2,8 +2,21 @@
   full_name: a shovel
   thwarts: diggable
   reusable: true
+  carriable: true
 
 - id: bomb
   full_name: a bomb
   thwarts: explodable
   reusable: false
+  carriable: true
+
+- id: key
+  full_name: a key
+  thwarts: lockable
+  reusable: true
+  carriable: true
+
+- id: chest
+  full_name: a chest
+  category: lockable
+  carriable: false

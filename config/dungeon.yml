@@ -6,6 +6,7 @@
       - S
     items:
       - shovel
+      - key
   -
     description: the north east chamber
     exits:
@@ -16,6 +17,8 @@
     description: the south west chamber
     exits:
       - N
+    items:
+      - chest
   -
     description: the south east chamber
     exits:
