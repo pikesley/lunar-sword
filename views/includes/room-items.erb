@@ -14,7 +14,7 @@
             <% if all_items[item].carriable %>
               <button id='<%= item %>'
                       class='btn btn-primary'
-                      onclick='take("<%= item %>")'>
+                      onclick='take('<%= item %>')'>
                 pick up
               </button>
             <% end %>
@@ -37,7 +37,7 @@
                     class='btn btn-primary'
                     data-target='#<%= npc %>-modal'
                     data-toggle='modal'>
-              speak to
+              speak
             </button>
           </td>
         </tr>
@@ -57,9 +57,7 @@
         <div class='modal-dialog'>
           <div class='modal-content'>
             <div class='modal-body'>
-              <p>
-                <%= all_npcs[npc].words %>
-              </p>
+              <p id='<%= npc %>-words'></p>
             </div>
 
             <div class='modal-footer'>
@@ -88,4 +86,16 @@ function take(item) {
     }
   })
 }
+
+<% if @room.npcs.count > 0 %>
+  <% @room.npcs.each do |npc| %>
+    $(function () {
+      $('#<%= npc %>-words').typed({
+        strings: [' ', "<%= all_npcs[npc].words.join '^500 ' %>"],
+        showCursor: false,
+        typeSpeed: 20
+      });
+    });
+  <% end %>
+<% end %>
 </script>
