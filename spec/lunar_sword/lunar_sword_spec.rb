@@ -18,7 +18,8 @@ module LunarSword
         get '/0/0'
         get '/2/2'
 
-        expect(last_response).to 
+        get last_response.header['Location']
+        expect(last_response.body).to match /You have died by cheating/
       end
     end
   end
