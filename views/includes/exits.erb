@@ -27,3 +27,17 @@
     </div>
   </div>
 </div>
+
+<script>
+function travel(direction) {
+  $.ajax({
+    url: '<%= request.path %>',
+    data: JSON.stringify({ direction: direction }),
+    type: 'POST',
+    contentType: 'application/json',
+    success: function(data) {
+      window.location.replace(data)
+    }
+  })
+}
+</script>

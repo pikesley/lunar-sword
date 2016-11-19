@@ -39,6 +39,8 @@ module LunarSword
 
       @room = room params
 
+      @valid_entrances = @room.exits.map { |e| next_room params[:x].to_i, params[:y].to_i, e }
+
       respond_to do |wants|
         wants.html do
           @title = @room.description
@@ -68,23 +70,7 @@ module LunarSword
 
       case @data.keys.first
       when 'direction'
-        next_room = {
-          x: params[:x].to_i,
-          y: params[:y].to_i
-        }
-
-        case @data['direction']
-        when 'N'
-          next_room[:y] -= 1
-        when 'E'
-          next_room[:x] += 1
-        when 'S'
-          next_room[:y] += 1
-        when 'W'
-          next_room[:x] -= 1
-        end
-
-        "/#{next_room[:x]}/#{next_room[:y]}"
+        next_room params[:x].to_i, params[:y].to_i, @data['direction']
 
       when 'take'
         explorer.take @data['take']

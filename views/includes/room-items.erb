@@ -26,3 +26,17 @@
     <h3>nothing</h3>
   <% end %>
 </div>
+
+<script>
+function take(item) {
+  $.ajax({
+    url: '<%= request.path %>',
+    data: JSON.stringify({ take: item }),
+    type: 'POST',
+    contentType: 'application/json',
+    success: function(data) {
+      window.location.replace(data)
+    }
+  })
+}
+</script>

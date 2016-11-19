@@ -18,8 +18,22 @@
         </tr>
       <% end %>
     </table>
-    
+
   <% else %>
     <h3>nothing</h3>
   <% end %>
 </div>
+
+<script>
+function drop(item) {
+  $.ajax({
+    url: '<%= request.path %>',
+    data: JSON.stringify({ drop: item }),
+    type: 'POST',
+    contentType: 'application/json',
+    success: function(data) {
+      window.location.replace(data)
+    }
+  })
+}
+</script>

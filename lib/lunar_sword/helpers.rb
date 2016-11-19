@@ -27,6 +27,22 @@ module LunarSword
       end
     end
 
+    def next_room x, y, direction
+
+      case direction
+      when 'N'
+        y -= 1
+      when 'E'
+        x += 1
+      when 'S'
+        y += 1
+      when 'W'
+        x -= 1
+      end
+
+      "/#{x}/#{y}"
+    end
+
     def slugify s
       s.gsub(' ', '-')
     end

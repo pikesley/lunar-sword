@@ -3,9 +3,14 @@
     description: the north west chamber
     exits:
       - E
-      - S
     items:
       - shovel
+      - key
+  -
+    description: the north chamber
+    exits:
+      - E
+      - W
   -
     description: the north east chamber
     exits:
@@ -13,10 +18,34 @@
       - S
 -
   -
+    description: the west chamber
+    exits:
+      - E
+      - S
+  -
+    description: the centre chamber
+    exits:
+      - E
+      - W
+  -
+    description: the east chamber
+    exits:
+      - N
+      - W
+-
+  -
     description: the south west chamber
     exits:
       - N
+      - E
+    items:
+      - chest
+  -
+    description: the south chamber
+    exits:
+      - E
+      - W
   -
     description: the south east chamber
     exits:
-      - N
+      - W
