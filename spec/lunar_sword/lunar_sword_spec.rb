@@ -13,6 +13,13 @@ module LunarSword
         get last_response.body
         expect(last_response.body).to match /You are in the north chamber/
       end
+
+      specify 'we cannot jump around like this is Portal' do
+        get '/0/0'
+        get '/2/2'
+
+        expect(last_response).to 
+      end
     end
   end
 end

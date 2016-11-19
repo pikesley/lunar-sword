@@ -21,6 +21,8 @@ module LunarSword
     end
 
     get '/' do
+      session.clear
+
       headers 'Vary' => 'Accept'
 
       respond_to do |wants|
@@ -39,7 +41,17 @@ module LunarSword
 
       @room = room params
 
-      @valid_entrances = @room.exits.map { |e| next_room params[:x].to_i, params[:y].to_i, e }
+      @valid_neighbours = @room.exits.map { |e| next_room params[:x].to_i, params[:y].to_i, e }
+      @valid_neighbours.push "/#{params[:x]}/#{params[:y]}"
+
+      if session[:source_room]
+        unless @valid_neighbours.include? session[:source_room]
+          session[:flash] = 'You have died by cheating'
+          redirect to '/dead'
+        end
+      end
+
+      session[:source_room] = "/#{params[:x]}/#{params[:y]}"
 
       respond_to do |wants|
         wants.html do
@@ -83,6 +95,27 @@ module LunarSword
         @room.receive @data['drop']
 
         "/#{params[:x]}/#{params[:y]}"
+      end
+    end
+
+    get '/dead' do
+      respond_to do |wants|
+        wants.html do
+          @title = 'Dead'
+          @github_url = CONFIG['github_url']
+          @cause = session[:flash]
+          [410, erb(:dead)]
+        end
+
+        wants.json do
+          [
+            410,
+            {
+              dead: 'you',
+              cause: session[:flash]
+            }.to_json
+          ]
+        end
       end
     end
 
