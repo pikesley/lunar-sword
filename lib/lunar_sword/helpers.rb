@@ -27,6 +27,13 @@ module LunarSword
       end
     end
 
+    def all_npcs
+      session[:all_npcs] || begin
+        session[:all_npcs] = ItemList.new 'config/npcs.yml'
+        return session[:all_npcs]
+      end
+    end
+
     def next_room x, y, direction
 
       case direction

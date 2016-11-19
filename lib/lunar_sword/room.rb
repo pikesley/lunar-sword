@@ -1,10 +1,11 @@
 module LunarSword
   class Room
-    attr_reader :items
+    attr_reader :items, :npcs
 
     def initialize data
       @data = data
       @items = data['items'] || []
+      @npcs = data['npcs'] || []
     end
 
     def method_missing m, *args

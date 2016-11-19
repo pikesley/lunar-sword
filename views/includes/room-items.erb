@@ -1,8 +1,9 @@
+<% empty = true %>
 <div id='items'>
   <h3>You can see</h3>
 
   <% if @room.items.count > 0 %>
-
+    <% empty = false %>
     <table class='table'>
       <% @room.items.each do |item| %>
         <tr>
@@ -21,11 +22,59 @@
         </tr>
       <% end %>
     </table>
+  <% end %>
 
-  <% else %>
+  <% if @room.npcs.count > 0 %>
+    <% empty = false %>
+    <table class='table'>
+      <% @room.npcs.each do |npc| %>
+        <tr>
+          <td>
+            <%= all_npcs[npc].description %>
+          </td>
+          <td>
+            <button id='<%= npc %>'
+                    class='btn btn-primary'
+                    data-target='#<%= npc %>-modal'
+                    data-toggle='modal'>
+              speak to
+            </button>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+
+  <% end %>
+  <% if empty %>
     <h3>nothing</h3>
   <% end %>
 </div>
+
+<% if @room.npcs.count > 0 %>
+  <div id='modals'>
+    <% @room.npcs.each do |npc| %>
+      <div class='modal fadel' id='<%= npc %>-modal' role='dialog'>
+        <div class='modal-dialog'>
+          <div class='modal-content'>
+            <div class='modal-body'>
+              <p>
+                <%= all_npcs[npc].words %>
+              </p>
+            </div>
+
+            <div class='modal-footer'>
+              <button type='button'
+                      class='btn btn-default'
+                      data-dismiss='modal'>
+                close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 
 <script>
 function take(item) {

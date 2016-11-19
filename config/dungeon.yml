@@ -13,6 +13,8 @@
       - W
   -
     description: the north east chamber
+    npcs:
+      - usidore
     exits:
       - W
       - S
@@ -29,6 +31,8 @@
       - W
   -
     description: the east chamber
+    npcs:
+      - chunt
     exits:
       - N
       - W
