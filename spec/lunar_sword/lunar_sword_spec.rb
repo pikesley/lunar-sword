@@ -6,5 +6,13 @@ module LunarSword
       get '/0/0'
       expect(last_response.status).to eq 300
     end
+
+    context 'exploring' do
+      specify 'we move into the correct room' do
+        post '/0/0', { direction: 'E'}.to_json, JSON_HEADERS
+        get last_response.body
+        expect(last_response.body).to match /You are in the north chamber/
+      end
+    end
   end
 end
